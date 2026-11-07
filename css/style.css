@@ -166,3 +166,4 @@ form input.bad{border-color:var(--red)}
 .cta-line{margin-top:30px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;color:var(--muted)}
 #sell .stands article p{font-size:15px;color:var(--muted);margin-top:8px}
 .fx[hidden]{display:none}
+.chips[hidden]{display:none}

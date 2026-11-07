@@ -1,25 +1,21 @@
 (function () {
   // ---- Event catalogue: add or edit matches here. Times are Nairobi (+03:00). ----
-  var STD = [
-    { id: 'reg', name: 'Regular',  note: 'General entry',     price: 500 },
-    { id: 'std', name: 'Standard', note: 'Covered seating',   price: 1000 },
-    { id: 'pre', name: 'Premium',  note: 'Best view seating', price: 2000 },
-    { id: 'vip', name: 'VIP',      note: 'Lounge access',     price: 5000 }
+  // Source: official FKF fixtures page (fkfleagues.co.ke/fixtures/kpl2627). Prices are placeholders
+  // until each organiser confirms theirs. Times are Nairobi (+03:00).
+  var KPL = [
+    { id: "reg", name: "Regular",  note: "General entry",   price: 300 },
+    { id: "std", name: "Covered",  note: "Covered seating", price: 500 },
+    { id: "vip", name: "VIP",      note: "VIP stand",       price: 1000 }
   ];
-  var LOW = [
-    { id: 'reg', name: 'Regular',  note: 'General entry',   price: 300 },
-    { id: 'std', name: 'Standard', note: 'Covered seating', price: 700 },
-    { id: 'vip', name: 'VIP',      note: 'Courtside / lounge', price: 2500 }
-  ];
+  var C = "FKF Premier League";
   var EVENTS = [
-    { id: 1, sport: 'Football',   home: 'Talanta City',    away: 'Coastal Rangers',   venue: 'Talanta Stadium',      city: 'Nairobi', iso: '2026-11-21T16:00:00+03:00', comp: 'League',       cats: STD },
-    { id: 2, sport: 'Rugby',      home: 'Nairobi Lions',   away: 'Kisumu Buffaloes',  venue: 'RFUEA Ground',         city: 'Nairobi', iso: '2026-11-22T15:00:00+03:00', comp: 'Premier League', cats: STD },
-    { id: 3, sport: 'Basketball', home: 'Eastlands Hawks', away: 'Mombasa Sharks',    venue: 'Nyayo Indoor Arena',   city: 'Nairobi', iso: '2026-11-28T18:00:00+03:00', comp: 'National League', cats: LOW },
-    { id: 4, sport: 'Football',   home: 'Rift Valley United', away: 'Lakeside FC',    venue: 'Kipchoge Stadium',     city: 'Eldoret', iso: '2026-12-05T15:00:00+03:00', comp: 'League',       cats: STD },
-    { id: 5, sport: 'Volleyball', home: 'Kenya Pipeline',  away: 'Prisons Queens',    venue: 'Kasarani Indoor',      city: 'Nairobi', iso: '2026-12-12T17:00:00+03:00', comp: 'Premier League', cats: LOW },
-    { id: 6, sport: 'Football',   home: 'Highlands Athletic', away: 'Talanta City',   venue: 'Green Park Stadium',   city: 'Nakuru',  iso: '2026-12-20T14:00:00+03:00', comp: 'National Cup', cats: STD },
-    { id: 7, sport: 'Rugby',      home: 'Mwamba RFC',      away: 'Kabras Sugar',      venue: 'Mwamba Grounds',       city: 'Nairobi', iso: '2027-01-09T16:00:00+03:00', comp: 'Premier League', cats: STD },
-    { id: 8, sport: 'Basketball', home: 'Ulinzi Warriors', away: 'Eastlands Hawks',   venue: 'Ulinzi Sports Complex', city: 'Nairobi', iso: '2027-01-16T18:00:00+03:00', comp: 'National League', cats: LOW }
+    { id: 1, sport: "Football", home: "Murang'a Seal", away: "Migori Youth",   venue: "St. Sebastian Park",    city: "Murang'a", iso: "2026-11-15T13:00:00+03:00", comp: C, cats: KPL },
+    { id: 2, sport: "Football", home: "APS Bomet",       away: "Mara Sugar",     venue: "Bomet Stadium",         city: "Bomet",    iso: "2027-02-21T13:00:00+03:00", comp: C, cats: KPL },
+    { id: 3, sport: "Football", home: "3K FC",           away: "Tusker FC",      venue: "Embu Stadium",          city: "Embu",     iso: "2027-04-11T13:00:00+03:00", comp: C, cats: KPL },
+    { id: 4, sport: "Football", home: "Ulinzi Stars",    away: "Posta Rangers",  venue: "Ulinzi Sports Complex", city: "Nairobi",  iso: "2027-04-25T13:00:00+03:00", comp: C, cats: KPL },
+    { id: 5, sport: "Football", home: "KCB FC",          away: "Bandari FC",     venue: "Police Stadium",        city: "Nairobi",  iso: "2027-05-02T13:00:00+03:00", comp: C, cats: KPL },
+    { id: 6, sport: "Football", home: "Ulinzi Stars",    away: "Bandari FC",     venue: "Ulinzi Sports Complex", city: "Nairobi",  iso: "2027-05-30T13:00:00+03:00", comp: C, cats: KPL },
+    { id: 7, sport: "Football", home: "Mara Sugar",      away: "Kakamega Homeboyz", venue: "Green Stadium, Awendo", city: "Awendo", iso: "2027-06-27T13:00:00+03:00", comp: C, cats: KPL }
   ];
   var MAX = 8;
 
@@ -58,6 +54,7 @@
   var sports = ['All'];
   upcoming.forEach(function (e) { if (sports.indexOf(e.sport) < 0) sports.push(e.sport); });
   var chips = $('#chips');
+  if (sports.length < 3) chips.hidden = true;
   sports.forEach(function (s) {
     var b = document.createElement('button');
     b.type = 'button'; b.className = 'chip' + (s === 'All' ? ' on' : ''); b.textContent = s; b.dataset.s = s;
